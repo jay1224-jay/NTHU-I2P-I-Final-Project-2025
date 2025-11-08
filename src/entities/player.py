@@ -20,7 +20,7 @@ class Player(Entity):
         '''
         [TODO HACKATHON 2]
         Calculate the distance change, and then normalize the distance
-        
+  
         [TODO HACKATHON 4]
         Check if there is collision, if so try to make the movement smooth
         Hint #1 : use entity.py _snap_to_grid function or create a similar function
@@ -30,18 +30,23 @@ class Player(Entity):
                     3. Update Y
                     4. If collide, snap to grid
                   instead of update both x, y, then snap to grid
-        
-        if input_manager.key_down(pg.K_LEFT) or input_manager.key_down(pg.K_a):
-            dis.x -= ...
-        if input_manager.key_down(pg.K_RIGHT) or input_manager.key_down(pg.K_d):
-            dis.x += ...
-        if input_manager.key_down(pg.K_UP) or input_manager.key_down(pg.K_w):
-            dis.y -= ...
-        if input_manager.key_down(pg.K_DOWN) or input_manager.key_down(pg.K_s):
-            dis.y += ...
-        
-        self.position = ...
         '''
+        d = 2
+        if input_manager.key_down(pg.K_LEFT) or input_manager.key_down(pg.K_a):
+            dis.x -= d
+        if input_manager.key_down(pg.K_RIGHT) or input_manager.key_down(pg.K_d):
+            dis.x += d
+        if input_manager.key_down(pg.K_UP) or input_manager.key_down(pg.K_w):
+            dis.y -= d
+        if input_manager.key_down(pg.K_DOWN) or input_manager.key_down(pg.K_s):
+            dis.y += d
+        if dis.x and dis.y:
+            # Normalize distnce
+            # Use 1+1=sqrt(2)^2 (in triangle)
+            dis.x /= math.sqrt(2)
+            dis.y /= math.sqrt(2)
+        self.position = Position(self.position.x + dis.x, self.position.y + dis.y)
+
         
         # Check teleportation
         tp = self.game_manager.current_map.check_teleport(self.position)
