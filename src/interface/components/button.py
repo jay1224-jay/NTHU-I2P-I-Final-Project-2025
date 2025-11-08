@@ -49,7 +49,6 @@ class Button(UIComponent):
             ...
         '''
         if self.hitbox.collidepoint(input_manager.mouse_pos):
-            # Logger.debug("Hover")
             self.img_button_default.image = self.img_button_hover.image
             if input_manager.mouse_pressed(1) and self.on_click is not None:
                 self.on_click()
