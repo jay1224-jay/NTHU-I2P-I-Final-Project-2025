@@ -31,7 +31,7 @@ class Player(Entity):
                     4. If collide, snap to grid
                   instead of update both x, y, then snap to grid
         '''
-        d = 2
+        d = self.speed / GameSettings.TILE_SIZE
         if input_manager.key_down(pg.K_LEFT) or input_manager.key_down(pg.K_a):
             dis.x -= d
         if input_manager.key_down(pg.K_RIGHT) or input_manager.key_down(pg.K_d):
@@ -67,7 +67,9 @@ class Player(Entity):
     @property
     @override
     def camera(self) -> PositionCamera:
-        return PositionCamera(int(self.position.x) - GameSettings.SCREEN_WIDTH // 2, int(self.position.y) - GameSettings.SCREEN_HEIGHT // 2)
+        player_width = self.game_manager.player.animation.rect.width
+        player_height = self.game_manager.player.animation.rect.height
+        return PositionCamera(int(self.position.x) - GameSettings.SCREEN_WIDTH // 2 + player_width//2, int(self.position.y) - GameSettings.SCREEN_HEIGHT // 2 + player_height//2)
             
     @classmethod
     @override

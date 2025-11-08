@@ -2,7 +2,7 @@ from __future__ import annotations
 import pygame as pg
 from typing import override
 from src.sprites import Animation
-from src.utils import Position, PositionCamera, Direction, GameSettings
+from src.utils import Position, PositionCamera, Direction, GameSettings, Logger
 from src.core import GameManager
 
 
@@ -43,6 +43,9 @@ class Entity:
         [TODO HACAKTHON 3]
         Implement the correct algorithm of player camera
         '''
+        # Also consider Player's width and height
+        Logger.debug("Camera position")
+        # print(self.game_manager.__dict__)
         return PositionCamera(int(self.position.x), int(self.position.y))
         
     def to_dict(self) -> dict[str, object]:

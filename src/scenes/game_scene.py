@@ -74,7 +74,8 @@ class GameScene(Scene):
             
             camera = self.game_manager.player.camera
             '''
-            camera = PositionCamera(16 * GameSettings.TILE_SIZE, 30 * GameSettings.TILE_SIZE)
+            camera = self.game_manager.player.camera
+            # camera = PositionCamera(16 * GameSettings.TILE_SIZE, 30 * GameSettings.TILE_SIZE)
             self.game_manager.current_map.draw(screen, camera)
             self.game_manager.player.draw(screen, camera)
         else:
