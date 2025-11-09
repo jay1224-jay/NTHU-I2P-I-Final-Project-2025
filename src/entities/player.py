@@ -37,14 +37,17 @@ class Player(Entity):
         d = self.speed * dt
         if input_manager.key_down(pg.K_LEFT) or input_manager.key_down(pg.K_a):
             dis.x -= d
+            self.animation.switch("left")
         if input_manager.key_down(pg.K_RIGHT) or input_manager.key_down(pg.K_d):
             dis.x += d
-
+            self.animation.switch("right")
 
         if input_manager.key_down(pg.K_UP) or input_manager.key_down(pg.K_w):
             dis.y -= d
+            self.animation.switch("up")
         if input_manager.key_down(pg.K_DOWN) or input_manager.key_down(pg.K_s):
             dis.y += d
+            self.animation.switch("down")
 
         if dis.x and dis.y:
             # Normalize distance
